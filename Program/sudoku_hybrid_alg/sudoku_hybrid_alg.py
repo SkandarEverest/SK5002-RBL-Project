@@ -72,48 +72,45 @@ def naked_singles():
 def hidden_singles():
     candidates_set = inv_board()
     # check for every number
-    for num in nlist:
-        # when getting into new number set count to 0
-        count = 0
-        loc = 0
-        # check every row and col
+    for num in nlist:  # nlist = {1,2,3,4,5,6,7,8,9}
+        # check every 3 row and col
         for row in range(9):
             for col in range(9):
-                row_count = [0 for __ in range(9)]
+                col_count = [0 for __ in range(9)]
                 box_count = 0
-                row_loc = 0
+                row_count = 0
+                col_loc = 0
                 box_loc = 0
+                row_loc = 0
 
                 # hidden singles in col
                 if row == 0:
                     for j in range(9):
-                        if num in candidates_set[col+9*j]:
-                            row_count[col] += 1
-                            row_loc = col + 9*j
+                        if num in candidates_set[9 * j + col]:
+                            col_count[col] += 1
+                            col_loc = 9 * j + col
                     # if found fill the said grid
-                    if row_count[col] == 1:
-                        board[row_loc] = num
-                        return
+                    if col_count[col] == 1:
+                        board[col_loc] = num
 
                 # hidden singles in row
-                if num in candidates_set[9*row + col]:
-                    count += 1
-                    loc = 9*row + col
+                if col == 0:
+                    for j in range(9):
+                        if num in candidates_set[9 * row + j]:
+                            row_count += 1
+                            row_loc = 9 * row + j
+                    if row_count == 1:
+                        board[row_loc] = num
 
                 # hidden singles in box
                 if row in [0, 3, 6] and col in [0, 3, 6]:
                     for r in range(row, row + 3):
                         for c in range(col, col + 3):
-                            if num in candidates_set[9*r + c]:
+                            if num in candidates_set[9 * r + c]:
                                 box_count += 1
-                                box_loc = 9*r + c
+                                box_loc = 9 * r + c
                     if box_count == 1:
                         board[box_loc] = num
-                        return
-
-        if count == 1:
-            board[loc] = num
-            return
 
 
 # backtracking algorithm
