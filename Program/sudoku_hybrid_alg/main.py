@@ -12,7 +12,8 @@ n0list = []
 nlist = []
 
 print(len(sudokus))
-x = [i for i in range(len(sudokus) - 5)]
+x = [i for i in range(len(sudokus) - 4)]
+x.pop(0)
 
 for i in range(len(sudokus)):
     start = time.time()
@@ -66,6 +67,9 @@ plt.plot(x[:10], y2[:10],"g--")
 plt.plot(x[9:20], y2[9:20],"y--")
 
 plt.title("Easy - Medium")
+plt.xlabel("Sample")
+plt.ylabel("Time in Secs")
+plt.xticks([0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20], ["0", "2", "4", "6", "8", "10", "12", "14", "16", "18", "20"])
 plt.legend()
 plt.show()
 
@@ -81,6 +85,12 @@ plt.plot(x[29:40], y2[29:40],"r--")
 plt.plot(x[39:50], y2[39:50],"m--")
 
 plt.title("Hard - Expert - Evil")
+# l = np.arange(1, 51, 5)
+# ax = plt.gca()
+# ax.set(xticks=l, xticklabels=l)
+plt.xlabel("Sample")
+plt.ylabel("Time in Secs")
+plt.xticks([20,22, 24, 26, 28, 30, 32, 34, 36, 38, 40,42,44,46,48,50], ["20","22", "24", "26", "28", "30", "32", "34", "36", "38", "40","42","44","46","48","50"])
 plt.legend()
 plt.show()
 
@@ -96,6 +106,7 @@ rects1 = ax.bar(x1 - width/2, n0list[:10], width, label='n0')
 rects2 = ax.bar(x1 + width/2, nlist[:10], width, label='n')
 
 ax.set_ylabel('Empty Squares')
+ax.set_xlabel('Sample Number')
 ax.set_title('Difficulty: Easy')
 ax.set_xticks(x1)
 ax.set_xticklabels(x[:10])
@@ -118,6 +129,7 @@ rects1 = ax.bar(x1 - width/2, n0list[10:20], width, label='n0')
 rects2 = ax.bar(x1 + width/2, nlist[10:20], width, label='n')
 
 ax.set_ylabel('Empty Squares')
+ax.set_xlabel('Sample Number')
 ax.set_title('Difficulty: Medium')
 ax.set_xticks(x1)
 ax.set_xticklabels(x[10:20])
@@ -140,6 +152,7 @@ rects1 = ax.bar(x1 - width/2, n0list[20:30], width, label='n0')
 rects2 = ax.bar(x1 + width/2, nlist[20:30], width, label='n')
 
 ax.set_ylabel('Empty Squares')
+ax.set_xlabel('Sample Number')
 ax.set_title('Difficulty: Hard')
 ax.set_xticks(x1)
 ax.set_xticklabels(x[20:30])
@@ -162,6 +175,7 @@ rects1 = ax.bar(x1 - width/2, n0list[30:40], width, label='n0')
 rects2 = ax.bar(x1 + width/2, nlist[30:40], width, label='n')
 
 ax.set_ylabel('Empty Squares')
+ax.set_xlabel('Sample Number')
 ax.set_title('Difficulty: Expert')
 ax.set_xticks(x1)
 ax.set_xticklabels(x[30:40])
@@ -184,6 +198,7 @@ rects1 = ax.bar(x1 - width/2, n0list[40:50], width, label='n0')
 rects2 = ax.bar(x1 + width/2, nlist[40:50], width, label='n')
 
 ax.set_ylabel('Empty Squares')
+ax.set_xlabel('Sample Number')
 ax.set_title('Difficulty: Evil')
 ax.set_xticks(x1)
 ax.set_xticklabels(x[40:50])
